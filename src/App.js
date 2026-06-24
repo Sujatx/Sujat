@@ -69,7 +69,7 @@ function App() {
         <div id="work" className="relative">
           <Work />
         </div>
-        <div id="hobbies" className="relative">
+        <div id="art" className="relative">
           <Hobby />
         </div>
 
