@@ -1,0 +1,62 @@
+[
+  {
+    "num": "01",
+    "titleLine1": "ARMOR",
+    "titleLine2": "GUARD",
+    "description": "Autonomous AI pentesting agent that probes web applications for security vulnerabilities and generates severity-scored forensic reports — governed in real time by the ArmorIQ SDK for intent drift detection.",
+    "techStack": ["TypeScript", "Python", "React", "Supabase", "Docker"],
+    "github": "https://github.com/Sujatx/ArmorGuard/",
+    "live": null,
+    "image": "/images/projects/armorguard.png"
+  },
+  {
+    "num": "02",
+    "titleLine1": "SHUKLA",
+    "titleLine2": "UPVCCRAFT",
+    "description": "High-performance web platform for a premium aluminium & uPVC solutions business — rich animations, category-filtered galleries, and direct WhatsApp enquiries.",
+    "techStack": ["React 19", "Tailwind CSS 4", "Framer Motion", "Radix UI", "Vite 7"],
+    "github": null,
+    "live": "https://www.shuklaupvccraft.com/",
+    "image": "/images/projects/shuklaupvccraft.png"
+  },
+  {
+    "num": "03",
+    "titleLine1": "THRIFT BY",
+    "titleLine2": "MUSKAN",
+    "description": "Full-stack e-commerce platform for a thrift store — product listings, cart, Razorpay payments, Cloudinary image management, and automated email notifications.",
+    "techStack": ["TypeScript", "React", "Express", "MongoDB", "Razorpay", "Cloudinary"],
+    "github": null,
+    "live": "https://thrift-by-muskan-am8g.vercel.app/",
+    "image": "/images/projects/thrift_by_muskan.png"
+  },
+  {
+    "num": "04",
+    "titleLine1": "JARVIS",
+    "titleLine2": "AGENT",
+    "description": "An autonomous AI agent for Windows that automates complex tasks through natural language using voice interaction, multi-step reasoning, and an integrated HUD dashboard.",
+    "techStack": ["Python", "PySide6", "Playwright", "SQLite"],
+    "github": "https://github.com/Sujatx/jarvis/",
+    "live": null,
+    "image": "/images/projects/jarvis.png"
+  },
+  {
+    "num": "05",
+    "titleLine1": "EX",
+    "titleLine2": "RAY",
+    "description": "A tiny open-source tool that scans your Instagram DMs and roasts your chat game with brutal honesty.",
+    "techStack": ["Python", "JavaScript"],
+    "github": "https://github.com/Sujatx/Ex-Ray/",
+    "live": null,
+    "image": "/images/projects/Exray.png"
+  },
+  {
+    "num": "06",
+    "titleLine1": "WOMAN",
+    "titleLine2": "LY",
+    "description": "A modern e-commerce platform built with Next.js, featuring a sleek design and smooth animations to enhance user experience.",
+    "techStack": ["TypeScript", "JavaScript", "Next.js", "CSS"],
+    "github": "https://github.com/Sujatx/womanly",
+    "live": null,
+    "image": "/images/projects/womanly.png"
+  }
+]
