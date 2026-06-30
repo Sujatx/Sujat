@@ -6,7 +6,7 @@
     "description": "Autonomous AI pentesting agent that probes web applications for security vulnerabilities and generates severity-scored forensic reports — governed in real time by the ArmorIQ SDK for intent drift detection.",
     "techStack": ["TypeScript", "Python", "React", "Supabase", "Docker"],
     "github": "https://github.com/Sujatx/ArmorGuard/",
-    "live": null,
+    "live": "https://armor-guard.vercel.app/",
     "image": "/images/projects/armorguard.png"
   },
   {
