@@ -10,7 +10,27 @@
     "image": "/images/projects/armorguard.png"
   },
   {
-    "num": "02",
+  "num": "02",
+  "titleLine1": "SPOTIFY",
+  "titleLine2": "2006",
+  "description": "A modern music streaming app reimagined in the design language of the mid-2000s web. One React engine — real search, playback, playlists, and an AI DJ — wrapped in three completely different retro skins you can switch between live.",
+  "techStack": ["JavaScript", "React", "Vite", "Groq AI"],
+  "github": "https://github.com/KAPS-LOCK/spotify",
+  "live": "https://spotify-drab-alpha.vercel.app/",
+  "image": "/images/projects/spotify.png"
+  },
+  {
+  "num": "03",
+  "titleLine1": "SUJAT",
+  "titleLine2": "V2",
+  "description": "A space-themed personal portfolio — ASCII art portrait, warp-speed starfield, scroll-driven GSAP animations, and a few easter eggs hiding in the dark.",
+  "techStack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+  "github": "https://github.com/Sujatx/Sujat-V2/",
+  "live": "https://portfolio-v2-alpha-olive.vercel.app/",
+  "image": "/images/projects/Sujat_v2.png"
+  },
+  {
+    "num": "04",
     "titleLine1": "SHUKLA",
     "titleLine2": "UPVCCRAFT",
     "description": "High-performance web platform for a premium aluminium & uPVC solutions business — rich animations, category-filtered galleries, and direct WhatsApp enquiries.",
@@ -20,7 +40,7 @@
     "image": "/images/projects/shuklaupvccraft.png"
   },
   {
-    "num": "03",
+    "num": "05",
     "titleLine1": "THRIFT BY",
     "titleLine2": "MUSKAN",
     "description": "Full-stack e-commerce platform for a thrift store — product listings, cart, Razorpay payments, Cloudinary image management, and automated email notifications.",
@@ -30,7 +50,7 @@
     "image": "/images/projects/thrift_by_muskan.png"
   },
   {
-    "num": "04",
+    "num": "06",
     "titleLine1": "JARVIS",
     "titleLine2": "AGENT",
     "description": "An autonomous AI agent for Windows that automates complex tasks through natural language using voice interaction, multi-step reasoning, and an integrated HUD dashboard.",
@@ -40,7 +60,7 @@
     "image": "/images/projects/jarvis.png"
   },
   {
-    "num": "05",
+    "num": "07",
     "titleLine1": "EX",
     "titleLine2": "RAY",
     "description": "A tiny open-source tool that scans your Instagram DMs and roasts your chat game with brutal honesty.",
@@ -48,15 +68,5 @@
     "github": "https://github.com/Sujatx/Ex-Ray/",
     "live": null,
     "image": "/images/projects/Exray.png"
-  },
-  {
-    "num": "06",
-    "titleLine1": "WOMAN",
-    "titleLine2": "LY",
-    "description": "A modern e-commerce platform built with Next.js, featuring a sleek design and smooth animations to enhance user experience.",
-    "techStack": ["TypeScript", "JavaScript", "Next.js", "CSS"],
-    "github": "https://github.com/Sujatx/womanly",
-    "live": null,
-    "image": "/images/projects/womanly.png"
   }
 ]
