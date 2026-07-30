@@ -74,9 +74,7 @@ const Home = () => {
             available for work
           </div>
           <div className="flex flex-col font-sora text-[15px] md:lg:text-[20px] 2xl:text-[40px] md:lg:ml-10 mx-5 2xl:ml-20">
-            I build projects — some for clients, most just because.
-            Creating more than I consume.
-            Like the Man said - "to heal the soul through the senses, and the senses through the soul."
+            Software developer and designer by day. Fiction reader by night. Somewhere in between is where I live.
           </div>
         </div>
 
