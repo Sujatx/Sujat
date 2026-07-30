@@ -93,7 +93,7 @@ const About = () => {
           style={{ fontSize: '16px', lineHeight: '1.65', color: '#CFC9BD', maxWidth: '600px', marginBottom: '20px' }}
         >
           I'm a developer who builds projects — for clients, for fun, and for the challenge of it.
-          I contribute to open source when something catches my eye, and I'm always learning — mostly by shipping things and figuring it out as I go.
+          Competing and speedrunning hackathon & CTF — mostly by shipping things and figuring it out as I go.
         </p>
 
         <p
