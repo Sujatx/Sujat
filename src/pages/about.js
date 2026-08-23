@@ -90,7 +90,7 @@ const About = () => {
           style={{ fontSize: 'var(--t-body)', lineHeight: '1.65', color: 'var(--ink-2)', maxWidth: '600px', marginBottom: 'var(--space-5)' }}
         >
           I'm a developer who builds projects — for clients, for fun, and for the challenge of it.
-          I contribute to open source when something catches my eye, and I'm always learning — mostly by shipping things and figuring it out as I go.
+          Competing and speedrunning hackathon & CTF — mostly by shipping things and figuring it out as I go.
         </p>
 
         <p
