@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CtaButton from "../fragments/ctaButton";
-import { MAILTO_HREF, onMailClick } from "../fragments/mailLink";
+import { MAILTO_HREF, onMailClick } from "../lib/mailLink";
 
 const Footer = () => {
   const [scrambledText, setScrambledText] = useState("");

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MAILTO_HREF, onMailClick } from "./mailLink";
+import { MAILTO_HREF, onMailClick } from "../lib/mailLink";
 
 const MailIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -32,7 +32,7 @@ const Navbar = ({ scrolled }) => {
     "text-primaryFont hover:text-yellow transition-colors duration-150";
 
   return (
-    <nav className={`font-abril sticky top-0 z-50 ${scrolled ? "bg-opacity-50" : "bg-transparent"}`}>
+    <nav className={`font-abril sticky top-0 z-50 ${scrolled ? "navbar-scrim" : "bg-transparent"}`}>
       <div className="max-w-screen flex items-center justify-between mx-auto md:mx-10 p-4">
 
         {/* Left: logo + nav links */}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import profileImage from "../assets/images/Profile-img.jpg";
+import profileImage from "../assets/images/Profile-img.webp";
 import SectionHeading from "../fragments/sectionHeading";
 
 const stack = ["TypeScript", "JavaScript", "React", "Python", "Docker"];
@@ -64,6 +64,8 @@ const About = () => {
           <img
             src={profileImage}
             alt="Sujat"
+            loading="lazy"
+            decoding="async"
             draggable="false"
             className="no-drag w-[180px] h-[270px] md:w-[215px] md:h-[315px] lg:w-[270px] lg:h-[395px] 2xl:w-[300px] 2xl:h-[440px] object-cover relative rounded-[50%]"
           />

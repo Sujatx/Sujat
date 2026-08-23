@@ -143,7 +143,7 @@ const SlideMedia = ({ project, playVideo, onRequestPlay, videoRef }) => {
   return (
     <>
       <BlurBackdrop src={project.image} />
-      <img src={project.image} alt={title} className="no-drag" draggable="false" style={contain} />
+      <img src={project.image} alt={title} loading="lazy" decoding="async" className="no-drag" draggable="false" style={contain} />
     </>
   );
 };

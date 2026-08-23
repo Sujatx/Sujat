@@ -23,7 +23,7 @@
     "techStack": ["TypeScript", "Python", "React", "Supabase", "Docker"],
     "github": "https://github.com/Sujatx/ArmorGuard/",
     "live": "https://armor-guard.vercel.app/",
-    "image": "/images/projects/armorguard.png"
+    "image": "/images/projects/armorguard.webp"
   },
   {
     "num": "03",
@@ -35,7 +35,7 @@
     "techStack": ["JavaScript", "React", "Vite", "Groq AI"],
     "github": "https://github.com/KAPS-LOCK/spotify",
     "live": "https://spotify-drab-alpha.vercel.app/",
-    "image": "/images/projects/spotify.png"
+    "image": "/images/projects/spotify.webp"
   },
   {
     "num": "04",
@@ -47,7 +47,7 @@
     "techStack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
     "github": "https://github.com/Sujatx/Sujat-V2/",
     "live": "https://portfolio-v2-alpha-olive.vercel.app/",
-    "image": "/images/projects/Sujat_v2.png"
+    "image": "/images/projects/Sujat_v2.webp"
   },
   {
     "num": "05",
@@ -59,7 +59,7 @@
     "techStack": ["React 19", "Tailwind CSS 4", "Framer Motion", "Radix UI", "Vite 7"],
     "github": null,
     "live": "https://www.shuklaupvccraft.com/",
-    "image": "/images/projects/shuklaupvccraft.png"
+    "image": "/images/projects/shuklaupvccraft.webp"
   },
   {
     "num": "06",
@@ -69,17 +69,17 @@
     "techStack": ["TypeScript", "React", "Express", "MongoDB", "Razorpay", "Cloudinary"],
     "github": null,
     "live": "https://thrift-by-muskan-am8g.vercel.app/",
-    "image": "/images/projects/thrift_by_muskan.png"
+    "image": "/images/projects/thrift_by_muskan.webp"
   },
   {
     "num": "07",
     "titleLine1": "JARVIS",
     "titleLine2": "AGENT",
-    "description": "An autonomous AI agent for Windows that automates complex tasks through natural language using voice interaction, multi-step reasoning, and an integrated HUD dashboard.",
+    "description": "An AI personal assistant with a Claude Code brain, an Obsidian memory vault, a voice line, and a WebGL brain-orb interface.",
     "techStack": ["Python", "PySide6", "Playwright", "SQLite"],
     "github": "https://github.com/Sujatx/jarvis/",
     "live": null,
-    "image": "/images/projects/jarvis.png"
+    "image": "/images/projects/jarvis.webp"
   },
   {
     "num": "08",
@@ -89,6 +89,6 @@
     "techStack": ["Python", "JavaScript"],
     "github": "https://github.com/Sujatx/Ex-Ray/",
     "live": null,
-    "image": "/images/projects/Exray.png"
+    "image": "/images/projects/Exray.webp"
   }
 ]

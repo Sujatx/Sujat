@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../index.css";
 import CtaButton from "../fragments/ctaButton";
-import { MAILTO_HREF, onMailClick } from "../fragments/mailLink";
+import { MAILTO_HREF, onMailClick } from "../lib/mailLink";
 
 const Home = () => {
   const [currentDate] = useState(getDate());
@@ -60,11 +60,11 @@ const Home = () => {
   };
 
   return (
-    <div className="relative w-full h-[80vh] mb-[20vh] flex items-center justify-center">
+    <div className="relative w-full min-h-[80vh] mb-[20vh] flex items-center justify-center">
       <div className="flex flex-row justify-between grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 text-primaryFont">
         <div className="hidden md:block"></div>
         {/* Top Right Section */}
-        <div className="order-2 md:order-none pl-5 md:pl-0">
+        <div className="order-2 md:order-none px-5 md:px-10 2xl:px-20 md:translate-y-20">
           <div className="font-jack text-[70px] leading-[70px] lg:text-[100px] lg:leading-[50px] 2xl:text-[160px] 2xl:leading-[80px]">
             *{currentDate[0]}{" "}
             <span className="text-[40px] lg:text-[70px] 2xl:text-[120px]">
@@ -81,7 +81,7 @@ const Home = () => {
           <CtaButton
             href={MAILTO_HREF}
             onClick={onMailClick}
-            className="mt-6 mr-5 ml-auto"
+            className="mt-6 mr-5 ml-auto md:ml-5 md:mr-auto lg:ml-10 2xl:ml-20"
           >
             Say hi!
           </CtaButton>
