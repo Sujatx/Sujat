@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Shared horizontal layout shell.
+   Every section from About downward uses this so the left/right gutters stay
+   identical across the page. Vertical rhythm stays per-section. */
+@layer components {
+  .section-shell {
+    width: 100%;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .section-shell {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-shell {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+  }
+
+  /* Above this width the max-width cap owns the gutter, so padding steps aside. */
+  @media (min-width: 1280px) {
+    .section-shell {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
 html, body {
   background: #000;
 }

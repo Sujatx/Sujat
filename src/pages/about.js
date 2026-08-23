@@ -49,7 +49,7 @@ const About = () => {
   return (
     <div
       ref={aboutRef}
-      className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 bg-transparent text-primaryFont p-10 bg-black"
+      className="section-shell min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 py-10 bg-transparent text-primaryFont"
     >
       {/* Image Section */}
       <div className="flex flex-col items-center justify-center">

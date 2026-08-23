@@ -1,8 +1,24 @@
 [
   {
     "num": "01",
+    "featured": true,
+    "titleLine1": "COFFEE",
+    "titleLine2": "LOUNGE",
+    "tagline": "A neighbourhood coffee house, designed end to end in Figma.",
+    "description": "A coffee house identity and website designed in Figma — menu, story, and ordering flow assembled into an interactive prototype.",
+    "techStack": ["Figma", "UI Design", "Prototype"],
+    "github": null,
+    "live": null,
+    "image": null,
+    "video": "/videos/coffee-lounge.mp4",
+    "poster": null
+  },
+  {
+    "num": "02",
+    "featured": true,
     "titleLine1": "ARMOR",
     "titleLine2": "GUARD",
+    "tagline": "Autonomous AI pentesting agent that probes web apps and scores what it finds.",
     "description": "Autonomous AI pentesting agent that probes web applications for security vulnerabilities and generates severity-scored forensic reports — governed in real time by the ArmorIQ SDK for intent drift detection.",
     "techStack": ["TypeScript", "Python", "React", "Supabase", "Docker"],
     "github": "https://github.com/Sujatx/ArmorGuard/",
@@ -10,29 +26,35 @@
     "image": "/images/projects/armorguard.png"
   },
   {
-  "num": "02",
-  "titleLine1": "SPOTIFY",
-  "titleLine2": "2006",
-  "description": "A modern music streaming app reimagined in the design language of the mid-2000s web. One React engine — real search, playback, playlists, and an AI DJ — wrapped in three completely different retro skins you can switch between live.",
-  "techStack": ["JavaScript", "React", "Vite", "Groq AI"],
-  "github": "https://github.com/KAPS-LOCK/spotify",
-  "live": "https://spotify-drab-alpha.vercel.app/",
-  "image": "/images/projects/spotify.png"
-  },
-  {
-  "num": "03",
-  "titleLine1": "SUJAT",
-  "titleLine2": "V2",
-  "description": "A space-themed personal portfolio — ASCII art portrait, warp-speed starfield, scroll-driven GSAP animations, and a few easter eggs hiding in the dark.",
-  "techStack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
-  "github": "https://github.com/Sujatx/Sujat-V2/",
-  "live": "https://portfolio-v2-alpha-olive.vercel.app/",
-  "image": "/images/projects/Sujat_v2.png"
+    "num": "03",
+    "featured": true,
+    "titleLine1": "SPOTIFY",
+    "titleLine2": "2006",
+    "tagline": "Real music streaming wrapped in three switchable mid-2000s skins.",
+    "description": "A modern music streaming app reimagined in the design language of the mid-2000s web. One React engine — real search, playback, playlists, and an AI DJ — wrapped in three completely different retro skins you can switch between live.",
+    "techStack": ["JavaScript", "React", "Vite", "Groq AI"],
+    "github": "https://github.com/KAPS-LOCK/spotify",
+    "live": "https://spotify-drab-alpha.vercel.app/",
+    "image": "/images/projects/spotify.png"
   },
   {
     "num": "04",
+    "featured": true,
+    "titleLine1": "SUJAT",
+    "titleLine2": "V2",
+    "tagline": "Space-themed portfolio with an ASCII portrait and a warp-speed starfield.",
+    "description": "A space-themed personal portfolio — ASCII art portrait, warp-speed starfield, scroll-driven GSAP animations, and a few easter eggs hiding in the dark.",
+    "techStack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+    "github": "https://github.com/Sujatx/Sujat-V2/",
+    "live": "https://portfolio-v2-alpha-olive.vercel.app/",
+    "image": "/images/projects/Sujat_v2.png"
+  },
+  {
+    "num": "05",
+    "featured": true,
     "titleLine1": "SHUKLA",
     "titleLine2": "UPVCCRAFT",
+    "tagline": "Web platform for a premium aluminium and uPVC solutions business.",
     "description": "High-performance web platform for a premium aluminium & uPVC solutions business — rich animations, category-filtered galleries, and direct WhatsApp enquiries.",
     "techStack": ["React 19", "Tailwind CSS 4", "Framer Motion", "Radix UI", "Vite 7"],
     "github": null,
@@ -40,7 +62,7 @@
     "image": "/images/projects/shuklaupvccraft.png"
   },
   {
-    "num": "05",
+    "num": "06",
     "titleLine1": "THRIFT BY",
     "titleLine2": "MUSKAN",
     "description": "Full-stack e-commerce platform for a thrift store — product listings, cart, Razorpay payments, Cloudinary image management, and automated email notifications.",
@@ -50,7 +72,7 @@
     "image": "/images/projects/thrift_by_muskan.png"
   },
   {
-    "num": "06",
+    "num": "07",
     "titleLine1": "JARVIS",
     "titleLine2": "AGENT",
     "description": "An autonomous AI agent for Windows that automates complex tasks through natural language using voice interaction, multi-step reasoning, and an integrated HUD dashboard.",
@@ -60,7 +82,7 @@
     "image": "/images/projects/jarvis.png"
   },
   {
-    "num": "07",
+    "num": "08",
     "titleLine1": "EX",
     "titleLine2": "RAY",
     "description": "A tiny open-source tool that scans your Instagram DMs and roasts your chat game with brutal honesty.",

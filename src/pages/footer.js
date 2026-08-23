@@ -54,7 +54,7 @@ const Footer = () => {
           </a>
         </motion.div>
       </div>
-      <div className="bg-transparent absolute bottom-10 flex px-10 4k:px-20 justify-end text-primaryFont w-full">
+      <div className="section-shell bg-transparent absolute bottom-10 left-0 right-0 flex justify-end text-primaryFont">
         <div className="font-sora text-right text-sm">
           Built and designed by Sujat Khan.<br />All rights reserved. ©
         </div>
