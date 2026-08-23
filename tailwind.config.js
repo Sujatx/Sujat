@@ -54,8 +54,30 @@ module.exports = {
 
       },
       colors: {
-        primaryFont: '#F5EEE6',
-        yellow: '#FFDA73'
+        /* Every color resolves to a token in src/index.css :root. */
+        primaryFont: 'var(--ink)',
+        yellow: 'var(--accent)',
+        accent: 'var(--accent)',
+        accentInk: 'var(--accent-ink)',
+        ink: 'var(--ink)',
+        ink2: 'var(--ink-2)',
+        ink3: 'var(--ink-3)',
+        surface: 'var(--surface)',
+        hairline: 'var(--hairline)',
+      },
+      fontSize: {
+        h1: 'var(--t-h1)',
+        h2: 'var(--t-h2)',
+        lede: 'var(--t-lede)',
+        body: 'var(--t-body)',
+        small: 'var(--t-small)',
+        label: 'var(--t-label)',
+      },
+      borderRadius: {
+        sm: 'var(--r-sm)',
+        lg: 'var(--r-lg)',
+        xl: 'var(--r-xl)',
+        pill: 'var(--r-pill)',
       },
       backgroundImage: {
         landingImg: "url('./assets/images/starry-night.jpg')",

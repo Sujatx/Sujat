@@ -50,7 +50,7 @@ export const IconButton = ({ href, onClick, label, size = 34, children }) => {
     height: size + "px",
     background: "transparent",
     border: "none",
-    color: hovered ? "#FFD24A" : "rgba(245,238,230,0.8)",
+    color: hovered ? "var(--accent)" : "rgba(245,238,230,0.8)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

@@ -46,7 +46,7 @@ function App() {
           right: 0,
           height: "5px",
           originX: 0,
-          backgroundColor: "#FFDA73",
+          backgroundColor: "var(--accent)",
           zIndex: 50,
         }}
       />

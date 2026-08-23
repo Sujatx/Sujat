@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from "framer-motion";
+import CtaButton from "../fragments/ctaButton";
+import { MAILTO_HREF, onMailClick } from "../fragments/mailLink";
 
 const Footer = () => {
   const [scrambledText, setScrambledText] = useState("");
@@ -37,25 +38,21 @@ const Footer = () => {
     <div
       className="relative w-full h-screen bg-transparent bg-center justify-start bg-cover flex"
     >
-      <div className="flex m-auto flex-col text-white">
-        <div className="text-[150px] md:lg:text-[200px] 4k:text-[300px] 4k:leading-[300px] font-tusker text-primaryFont leading-[200px] md:lg:leading-[100px] p-8">
+      <div className="flex m-auto flex-col text-primaryFont">
+        <div className="text-[150px] lg:text-[200px] 4k:text-[300px] 4k:leading-[300px] font-tusker text-primaryFont leading-[200px] lg:leading-[100px] p-8">
           <span className="text-yellow">Let's</span> {scrambledText}
         </div>
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.8 }}
-          className='justify-center flex'
+        <CtaButton
+          href={MAILTO_HREF}
+          onClick={onMailClick}
+          size="lg"
+          className="mx-auto mt-5"
         >
-          <a
-            href="mailto:sujatk891@gmail.com?subject=Hello Sujat!&body=Hi Sujat,"
-            className="md:lg:px-7 m-auto bg-yellow mt-5 md:lg:pt-2 md:lg:pb-3 pt-1 pb-2 px-4 4k:px-10 4k:pt-4 4k:pb-5 font-abril text-md md:lg:text-2xl 4k:text-4xl text-black border-4 border-black rounded-full"
-          >
-            Say Hello!
-          </a>
-        </motion.div>
+          Say Hello!
+        </CtaButton>
       </div>
-      <div className="section-shell bg-transparent absolute bottom-10 left-0 right-0 flex justify-end text-primaryFont">
-        <div className="font-sora text-right text-sm">
+      <div className="section-shell bg-transparent absolute bottom-10 left-0 right-0 flex justify-center text-primaryFont">
+        <div className="font-sora text-center text-sm">
           Built and designed by Sujat Khan.<br />All rights reserved. ©
         </div>
       </div>

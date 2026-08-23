@@ -2,37 +2,53 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { GithubIcon, ShareIcon, ChevronIcon, PlayIcon, IconButton } from "./icons";
 
-const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(query).matches
-  );
-
-  useEffect(() => {
-    const mql = window.matchMedia(query);
-    const onChange = (e) => setMatches(e.matches);
-    setMatches(mql.matches);
-    mql.addEventListener("change", onChange);
-    return () => mql.removeEventListener("change", onChange);
-  }, [query]);
-
-  return matches;
-};
-
 /* Blurred, over-scaled copy of the media so a frame that does not match the
    panel aspect ratio fills the flanks instead of showing bare letterbox. */
-const BlurBackdrop = ({ src }) =>
-  src ? (
+/* How long a still-image slide holds before advancing. */
+const IMAGE_MS = 5000;
+
+/* Playback speed for spotlight clips. Set on loadedmetadata because
+   playbackRate is a property, not an attribute, and it resets on each load. */
+const VIDEO_RATE = 1.25;
+const setRate = (e) => {
+  e.currentTarget.playbackRate = VIDEO_RATE;
+};
+
+const acrylic = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  filter: "blur(36px) saturate(1.3)",
+  transform: "scale(1.15)",
+  opacity: 0.7,
+};
+
+const BlurBackdrop = ({ src, video }) =>
+  video ? (
+    /* A second copy of the clip, blurred, so the flanks carry the frame's own
+       colour as it plays instead of a static fallback. */
+    <video
+      src={video}
+      autoPlay
+      muted
+      playsInline
+      onLoadedMetadata={setRate}
+      aria-hidden="true"
+      tabIndex={-1}
+      draggable="false"
+      className="no-drag"
+      style={acrylic}
+    />
+  ) : src ? (
     <div
       aria-hidden="true"
       style={{
-        position: "absolute",
-        inset: 0,
+        ...acrylic,
         backgroundImage: `url(${src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: "blur(40px) saturate(1.15)",
-        transform: "scale(1.2)",
-        opacity: 0.45,
       }}
     />
   ) : (
@@ -42,12 +58,12 @@ const BlurBackdrop = ({ src }) =>
         position: "absolute",
         inset: 0,
         background:
-          "radial-gradient(120% 90% at 50% 40%, rgba(245,238,230,0.09) 0%, rgba(0,0,0,0) 70%), #060504",
+          "radial-gradient(120% 90% at 50% 40%, rgba(245,238,230,0.09) 0%, rgba(0,0,0,0) 70%), var(--surface)",
       }}
     />
   );
 
-const SlideMedia = ({ project, playVideo, onRequestPlay }) => {
+const SlideMedia = ({ project, playVideo, onRequestPlay, videoRef }) => {
   const title = `${project.titleLine1} ${project.titleLine2}`;
   const contain = {
     position: "absolute",
@@ -61,22 +77,31 @@ const SlideMedia = ({ project, playVideo, onRequestPlay }) => {
   if (project.video) {
     return (
       <>
-        <BlurBackdrop src={project.poster} />
+        {playVideo ? (
+          <BlurBackdrop video={project.video} />
+        ) : (
+          <BlurBackdrop src={project.poster} />
+        )}
         {playVideo ? (
           <video
+            ref={videoRef}
             src={project.video}
             poster={project.poster || undefined}
+            className="no-drag"
+            draggable="false"
             preload="none"
             autoPlay
             muted
-            loop
             playsInline
+            onLoadedMetadata={setRate}
             aria-label={`${title} walkthrough`}
             style={contain}
           />
         ) : (
           <>
-            {project.poster && <img src={project.poster} alt={title} style={contain} />}
+            {project.poster && (
+              <img src={project.poster} alt={title} className="no-drag" draggable="false" style={contain} />
+            )}
             <button
               type="button"
               onClick={onRequestPlay}
@@ -90,7 +115,7 @@ const SlideMedia = ({ project, playVideo, onRequestPlay }) => {
                 background: "transparent",
                 border: "none",
                 cursor: "pointer",
-                color: "#F5EEE6",
+                color: "var(--ink)",
               }}
             >
               <span
@@ -118,7 +143,7 @@ const SlideMedia = ({ project, playVideo, onRequestPlay }) => {
   return (
     <>
       <BlurBackdrop src={project.image} />
-      <img src={project.image} alt={title} style={contain} />
+      <img src={project.image} alt={title} className="no-drag" draggable="false" style={contain} />
     </>
   );
 };
@@ -143,7 +168,7 @@ const ArrowButton = ({ dir, onClick, label, size = 30 }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: hovered ? "#FFD24A" : "rgba(245,238,230,0.65)",
+        color: hovered ? "var(--accent)" : "rgba(245,238,230,0.65)",
         filter: "drop-shadow(0 1px 6px rgba(0,0,0,0.6))",
         transition: "color .15s ease",
       }}
@@ -153,7 +178,10 @@ const ArrowButton = ({ dir, onClick, label, size = 30 }) => {
   );
 };
 
-const SpotlightMeta = ({ project, overlay }) => (
+const SpotlightMeta = ({ project }) => {
+  const hasLinks = Boolean(project.github || project.live);
+
+  return (
   <div
     style={{
       display: "flex",
@@ -162,31 +190,30 @@ const SpotlightMeta = ({ project, overlay }) => (
       textAlign: "center",
       maxWidth: "620px",
       margin: "0 auto",
-      padding: overlay ? 0 : "20px 2px 0",
     }}
   >
     <h3
       className="font-anton"
       style={{
-        fontSize: overlay ? "clamp(26px, 2.6vw, 42px)" : "28px",
+        fontSize: "var(--t-h2)",
         lineHeight: "0.95",
         textTransform: "uppercase",
-        textShadow: overlay ? "0 2px 20px rgba(0,0,0,0.75)" : "none",
-        marginBottom: "10px",
+        textShadow: "0 2px 20px rgba(0,0,0,0.75)",
+        marginBottom: "clamp(4px, 1.4vw, 12px)",
       }}
     >
-      <span style={{ color: "#F5EEE6" }}>{project.titleLine1} </span>
-      <span style={{ color: "#FFD24A" }}>{project.titleLine2}</span>
+      <span style={{ color: "var(--ink)" }}>{project.titleLine1} </span>
+      <span style={{ color: "var(--accent)" }}>{project.titleLine2}</span>
     </h3>
 
     <p
       className="font-sora"
       style={{
-        fontSize: "13px",
+        fontSize: "var(--t-small)",
         lineHeight: "1.55",
-        color: overlay ? "#E4DED4" : "#CFC9BD",
-        marginBottom: "10px",
-        textShadow: overlay ? "0 1px 10px rgba(0,0,0,0.7)" : "none",
+        color: "var(--ink-2)",
+        marginBottom: "clamp(4px, 1.4vw, 12px)",
+        textShadow: "0 1px 10px rgba(0,0,0,0.7)",
       }}
     >
       {project.tagline || project.description}
@@ -195,20 +222,21 @@ const SpotlightMeta = ({ project, overlay }) => (
     <div
       className="font-spaceMono"
       style={{
-        fontSize: "10.5px",
+        fontSize: "var(--t-label)",
         letterSpacing: "1px",
-        lineHeight: "1.7",
+        lineHeight: "1.5",
         textTransform: "uppercase",
-        color: overlay ? "#B6AFA2" : "#8F897C",
-        marginBottom: "14px",
+        color: "var(--ink-3)",
+        /* No icon row on link-less projects, so the margin would be dead space. */
+        marginBottom: hasLinks ? "clamp(6px, 1.8vw, 16px)" : 0,
         overflowWrap: "anywhere",
       }}
     >
       {project.techStack.join(", ")}
     </div>
 
-    {(project.github || project.live) && (
-      <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+    {hasLinks && (
+      <div style={{ display: "flex", justifyContent: "center", gap: "var(--space-3)" }}>
         {project.github && (
           <IconButton
             href={project.github}
@@ -230,23 +258,62 @@ const SpotlightMeta = ({ project, overlay }) => (
       </div>
     )}
   </div>
-);
+  );
+};
 
 const ProjectSpotlight = ({ projects }) => {
   const [active, setActive] = useState(0);
   const [manualPlay, setManualPlay] = useState(false);
   const [inView, setInView] = useState(false);
   const wrapperRef = useRef(null);
+  const touchStart = useRef(null);
+  const videoRef = useRef(null);
+  const [progress, setProgress] = useState(0);
 
-  const isMobile = useMediaQuery("(max-width: 767px)");
   const reduceMotion = useReducedMotion();
 
   const count = projects.length;
   const go = useCallback((next) => setActive((next + count) % count), [count]);
 
+  const project = projects[active];
+  const autoAllowed = inView && !reduceMotion;
+  const playVideo = Boolean(project && project.video) && (autoAllowed || manualPlay);
+
   useEffect(() => {
     setManualPlay(false);
   }, [active]);
+
+  /* Drives the indicator and the auto-advance. Video slides run for as long as
+     the clip does and follow its actual playback; image slides run IMAGE_MS.
+     A video waiting on a manual play button holds the carousel rather than
+     advancing past unwatched footage. */
+  useEffect(() => {
+    setProgress(0);
+    if (!inView) return undefined;
+
+    const isVideo = Boolean(project && project.video);
+    if (isVideo && !playVideo) return undefined;
+
+    const start = performance.now();
+    let raf;
+    const tick = (now) => {
+      let p;
+      if (isVideo) {
+        const v = videoRef.current;
+        p = v && v.duration ? v.currentTime / v.duration : 0;
+      } else {
+        p = (now - start) / IMAGE_MS;
+      }
+      if (p >= 1) {
+        go(active + 1);
+        return;
+      }
+      setProgress(p);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, inView, playVideo, project, go]);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -259,13 +326,27 @@ const ProjectSpotlight = ({ projects }) => {
     return () => observer.unobserve(el);
   }, []);
 
+  const panelHeight = "clamp(260px, 34vw, 460px)";
+
+  /* Swipe to advance. Gestures that are mostly vertical are ignored so the
+     page still scrolls normally with a finger on the panel. */
+  const onTouchStart = (e) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchEnd = (e) => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Math.abs(dx) < 50 || Math.abs(dx) <= Math.abs(dy)) return;
+    go(dx < 0 ? active + 1 : active - 1);
+  };
+
   if (!count) return null;
-
-  const project = projects[active];
-  const autoAllowed = inView && !isMobile && !reduceMotion;
-  const playVideo = Boolean(project.video) && (autoAllowed || manualPlay);
-
-  const panelHeight = isMobile ? "220px" : "clamp(260px, 34vw, 460px)";
 
   const onKeyDown = (e) => {
     if (e.key === "ArrowLeft") {
@@ -278,21 +359,25 @@ const ProjectSpotlight = ({ projects }) => {
   };
 
   return (
-    <div ref={wrapperRef} style={{ marginBottom: "64px" }}>
+    <div ref={wrapperRef} style={{ marginBottom: "var(--space-8)" }}>
       {/* Media panel — one fixed size for every slide */}
       <div
         tabIndex={0}
         onKeyDown={onKeyDown}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         role="group"
         aria-roledescription="carousel"
         aria-label="Featured projects"
         style={{
           position: "relative",
           height: panelHeight,
-          borderRadius: "16px",
-          border: "1px solid rgba(245,238,230,0.14)",
+          borderRadius: "var(--r-xl)",
+          border: "1px solid var(--hairline)",
           overflow: "hidden",
-          background: "#000",
+          background: "var(--surface)",
+          /* Vertical panning stays with the page; horizontal is ours. */
+          touchAction: "pan-y",
         }}
       >
         <AnimatePresence initial={false}>
@@ -306,41 +391,49 @@ const ProjectSpotlight = ({ projects }) => {
           >
             <SlideMedia
               project={project}
+              videoRef={videoRef}
               playVideo={playVideo}
               onRequestPlay={() => setManualPlay(true)}
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Desktop: scrim + overlaid copy */}
-        {!isMobile && (
-          <>
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: 0,
-                pointerEvents: "none",
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 32%, rgba(0,0,0,0) 62%)",
-              }}
-            />
-            <div style={{ position: "absolute", left: "72px", right: "72px", bottom: "30px" }}>
-              <SpotlightMeta project={project} overlay />
-            </div>
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 32%, rgba(0,0,0,0) 62%)",
+          }}
+        />
+        {/* Inset scales so the copy always clears the arrows, down to 360px. */}
+        <div
+          style={{
+            position: "absolute",
+            left: "clamp(48px, 12vw, 72px)",
+            right: "clamp(48px, 12vw, 72px)",
+            bottom: "clamp(10px, 3.5vw, 30px)",
+          }}
+        >
+          <SpotlightMeta project={project} />
+        </div>
 
-            <div style={{ position: "absolute", top: "50%", left: "14px", transform: "translateY(-50%)" }}>
-              <ArrowButton dir="left" onClick={() => go(active - 1)} label="Previous project" />
-            </div>
-            <div style={{ position: "absolute", top: "50%", right: "14px", transform: "translateY(-50%)" }}>
-              <ArrowButton dir="right" onClick={() => go(active + 1)} label="Next project" />
-            </div>
-          </>
-        )}
+        {/* Touch gets the swipe gesture instead. */}
+        <div
+          className="hidden md:block"
+          style={{ position: "absolute", top: "50%", left: "14px", transform: "translateY(-50%)" }}
+        >
+          <ArrowButton dir="left" onClick={() => go(active - 1)} label="Previous project" />
+        </div>
+        <div
+          className="hidden md:block"
+          style={{ position: "absolute", top: "50%", right: "14px", transform: "translateY(-50%)" }}
+        >
+          <ArrowButton dir="right" onClick={() => go(active + 1)} label="Next project" />
+        </div>
       </div>
-
-      {/* Mobile: copy sits below the panel */}
-      {isMobile && <SpotlightMeta project={project} overlay={false} />}
 
       {/* Controls */}
       <div
@@ -348,15 +441,11 @@ const ProjectSpotlight = ({ projects }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: "10px",
-          marginTop: "20px",
+          gap: "var(--space-3)",
+          marginTop: "var(--space-5)",
         }}
       >
-        {isMobile && (
-          <ArrowButton dir="left" size={22} onClick={() => go(active - 1)} label="Previous project" />
-        )}
-
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
           {projects.map((p, i) => (
             <button
               key={p.titleLine1 + p.titleLine2}
@@ -365,22 +454,28 @@ const ProjectSpotlight = ({ projects }) => {
               aria-label={`Go to project ${i + 1}: ${p.titleLine1} ${p.titleLine2}`}
               aria-current={i === active}
               style={{
-                width: isMobile ? "22px" : "32px",
+                width: "32px",
                 height: "3px",
                 padding: 0,
                 border: "none",
                 borderRadius: "2px",
                 cursor: "pointer",
-                background: i === active ? "#FFD24A" : "rgba(245,238,230,0.24)",
-                transition: "background .25s ease",
+                background: "rgba(245,238,230,0.24)",
+                overflow: "hidden",
+                display: "block",
               }}
-            />
+            >
+              <span
+                style={{
+                  display: "block",
+                  height: "100%",
+                  width: i === active ? `${Math.round(progress * 100)}%` : "0%",
+                  background: "var(--accent)",
+                }}
+              />
+            </button>
           ))}
         </div>
-
-        {isMobile && (
-          <ArrowButton dir="right" size={22} onClick={() => go(active + 1)} label="Next project" />
-        )}
       </div>
     </div>
   );

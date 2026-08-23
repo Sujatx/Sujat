@@ -2,30 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   Design tokens. Single source of truth for color, type, space and radius.
+   Components resolve through these — no bare hex, px type, or ad-hoc grey.
+   --------------------------------------------------------------------------- */
+:root {
+  /* Color — one accent hue; everything else is warm ink on a warm-black ground */
+  --accent: #FFDA73;
+  --accent-ink: #16130F;   /* text/border sitting on an accent fill */
+  --ink: #F5EEE6;          /* headings, active */
+  --ink-2: #CFC9BD;        /* body */
+  --ink-3: #8F897C;        /* meta, tech lists */
+  --surface: #0B0A09;      /* cards, spotlight panel */
+  --hairline: rgba(245, 238, 230, 0.14);
+  --hairline-strong: rgba(245, 238, 230, 0.32);
+
+  /* Type scale */
+  --t-h1: clamp(28px, 3.6vw, 44px);
+  --t-h2: clamp(20px, 2.2vw, 26px);
+  --t-lede: clamp(16px, 1.6vw, 19px);
+  --t-body: 16px;
+  --t-small: 13px;
+  --t-label: 11px;
+
+  /* Space — 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-section: clamp(56px, 9vw, 112px);
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+}
+
 /* Shared horizontal layout shell.
    Every section from About downward uses this so the left/right gutters stay
    identical across the page. Vertical rhythm stays per-section. */
 @layer components {
   .section-shell {
     width: 100%;
-    max-width: 1080px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
   @media (min-width: 768px) {
     .section-shell {
-      padding-left: 60px;
-      padding-right: 60px;
+      padding-left: 80px;
+      padding-right: 80px;
     }
   }
 
   @media (min-width: 1024px) {
     .section-shell {
-      padding-left: 80px;
-      padding-right: 80px;
+      padding-left: 104px;
+      padding-right: 104px;
     }
   }
 
@@ -36,10 +77,31 @@
       padding-right: 0;
     }
   }
+
+  /* Shared vertical rhythm. Pairs with .section-shell so every section between
+     the hero and the footer breathes identically. */
+  .section-block {
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+  }
+
+  /* Blocks drag-to-save. draggable="false" on the element covers Chrome,
+     Firefox and Edge; -webkit-user-drag is what Safari reads, and
+     -webkit-touch-callout suppresses the iOS long-press save sheet. */
+  .no-drag {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
 }
 
 html, body {
   background: #000;
+  /* The scramble animations render random glyphs that are transiently wider
+     than the settled text, which grows the document's scroll width and makes
+     the page jitter sideways. `clip` contains it without creating a scroll
+     container, so the sticky navbar keeps working (`hidden` would break it). */
+  overflow-x: clip;
 }
 
 html {

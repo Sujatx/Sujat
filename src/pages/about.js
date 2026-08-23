@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import profileImage from "../assets/images/Profile-img.jpg";
+import SectionHeading from "../fragments/sectionHeading";
 
 const stack = ["TypeScript", "JavaScript", "React", "Python", "Docker"];
 
@@ -49,22 +49,26 @@ const About = () => {
   return (
     <div
       ref={aboutRef}
-      className="section-shell min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 py-10 bg-transparent text-primaryFont"
+      className="section-shell section-block min-h-screen flex flex-col bg-transparent text-primaryFont"
     >
-      {/* Image Section */}
-      <div className="flex flex-col items-center justify-center">
+      <SectionHeading>about</SectionHeading>
+
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Image Section */}
+        <div className="flex flex-col items-center justify-center">
         <div
-          className={`relative flex w-full items-center justify-center transition-transform duration-700 ${
+          className={`relative flex w-fit items-center justify-center transition-transform duration-700 ${
             inView ? "scale-110" : "scale-50"
           }`}
         >
           <img
             src={profileImage}
             alt="Sujat"
-            className="w-[200px] h-[350px] md:w-[350px] md:lg:h-[500px] 2xl:w-[500px] object-cover relative rounded-[50%]"
+            draggable="false"
+            className="no-drag w-[180px] h-[270px] md:w-[215px] md:h-[315px] lg:w-[270px] lg:h-[395px] 2xl:w-[300px] 2xl:h-[440px] object-cover relative rounded-[50%]"
           />
-          <div className="flex flex-row absolute bottom-0 left-[100px]">
-            <span className="font-tusker mt-[100px] text-primaryFont text-[0px] md:text-[70px] 2xl:text-[100px] 2xl:ml-[200px]">
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+            <span className="font-tusker text-primaryFont whitespace-nowrap text-[0px] md:text-[40px] lg:text-[48px] 2xl:text-[56px]">
               {scrambledText}
             </span>
           </div>
@@ -73,24 +77,17 @@ const About = () => {
 
       {/* Text Section */}
       <div className="flex flex-col justify-center" style={{ maxWidth: '600px' }}>
-        <span
-          className="font-spaceMono uppercase block"
-          style={{ fontSize: '12px', letterSpacing: '3px', color: '#FFD24A', marginBottom: '14px' }}
-        >
-          / ABOUT
-        </span>
-
         <h1
           className="font-anton"
           style={{ fontSize: '62px', lineHeight: '0.9', letterSpacing: '0.5px', marginBottom: '20px' }}
         >
-          <span style={{ color: '#FFD24A' }}>Hello! </span>
-          <span style={{ color: '#F5EEE6' }}>I'm Sujat</span>
+          <span style={{ color: 'var(--accent)' }}>Hello! </span>
+          <span style={{ color: 'var(--ink)' }}>I'm Sujat</span>
         </h1>
 
         <p
           className="font-sora"
-          style={{ fontSize: '16px', lineHeight: '1.65', color: '#CFC9BD', maxWidth: '600px', marginBottom: '20px' }}
+          style={{ fontSize: 'var(--t-body)', lineHeight: '1.65', color: 'var(--ink-2)', maxWidth: '600px', marginBottom: 'var(--space-5)' }}
         >
           I'm a developer who builds projects — for clients, for fun, and for the challenge of it.
           I contribute to open source when something catches my eye, and I'm always learning — mostly by shipping things and figuring it out as I go.
@@ -98,7 +95,7 @@ const About = () => {
 
         <p
           className="font-sora"
-          style={{ fontSize: '16px', color: '#CFC9BD', marginBottom: '16px' }}
+          style={{ fontSize: 'var(--t-body)', color: 'var(--ink-2)', marginBottom: 'var(--space-4)' }}
         >
           Here are some of the technologies I build with —
         </p>
@@ -107,31 +104,30 @@ const About = () => {
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
-            gap: '13px 28px',
+            gap: 'var(--space-3) var(--space-6)',
             maxWidth: '480px',
-            marginBottom: '24px',
+            marginBottom: 'var(--space-5)',
           }}
         >
           {stack.map((tech) => (
-            <motion.div
+            <div
               key={tech}
-              className="flex items-center font-sora cursor-default select-none"
-              style={{ gap: '13px', fontSize: '16px', color: '#E7E1D6' }}
-              whileHover={{ x: 4, color: '#FFD24A' }}
-              transition={{ duration: 0.18 }}
+              className="flex items-center font-sora"
+              style={{ gap: 'var(--space-3)', fontSize: 'var(--t-small)', color: 'var(--ink-2)' }}
             >
-              <span style={{ color: '#FFD24A', fontSize: '12px' }}>▸</span>
+              <span style={{ color: 'var(--accent)', fontSize: 'var(--t-label)' }}>▸</span>
               {tech}
-            </motion.div>
+            </div>
           ))}
         </div>
 
         <p
           className="font-sora"
-          style={{ fontSize: '16px', lineHeight: '1.65', color: '#8F897C', maxWidth: '600px' }}
+          style={{ fontSize: 'var(--t-body)', lineHeight: '1.65', color: 'var(--ink-3)', maxWidth: '600px' }}
         >
           So whether you need someone to code a digital masterpiece, paint a literal one, or tell you what to read next — I'm your person.
         </p>
+        </div>
       </div>
     </div>
   );

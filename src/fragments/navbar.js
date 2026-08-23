@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MAILTO_HREF, onMailClick } from "./mailLink";
 
 const MailIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -24,11 +25,11 @@ const Navbar = ({ scrolled }) => {
 
   const linkClass = (section) =>
     `block py-2 px-3 md:p-0 transition-colors duration-150 ${
-      activeSection === section ? "text-yellow line-through" : "text-white"
+      activeSection === section ? "text-yellow line-through" : "text-primaryFont"
     } hover:text-yellow`;
 
   const iconClass =
-    "text-white hover:text-yellow transition-colors duration-150";
+    "text-primaryFont hover:text-yellow transition-colors duration-150";
 
   return (
     <nav className={`font-abril sticky top-0 z-50 ${scrolled ? "bg-opacity-50" : "bg-transparent"}`}>
@@ -36,7 +37,7 @@ const Navbar = ({ scrolled }) => {
 
         {/* Left: logo + nav links */}
         <div className="flex items-center gap-8">
-          <a href="#home" className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+          <a href="#home" className="self-center text-2xl font-semibold whitespace-nowrap text-primaryFont">
             Sujat
           </a>
           <ul className="hidden md:flex flex-row gap-6 font-medium">
@@ -70,7 +71,7 @@ const Navbar = ({ scrolled }) => {
 
         {/* Right: icon links */}
         <div className="flex items-center gap-5">
-          <a href="mailto:sujatk891@gmail.com" className={iconClass} aria-label="Email">
+          <a href={MAILTO_HREF} onClick={onMailClick} className={iconClass} aria-label="Email">
             <MailIcon />
           </a>
           <a href="https://github.com/Sujatx/" target="_blank" rel="noopener noreferrer" className={iconClass} aria-label="GitHub">

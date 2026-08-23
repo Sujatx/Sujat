@@ -1,24 +1,25 @@
 import React from "react";
 import painting01 from "../assets/images/painting-01.png";
 import painting02 from "../assets/images/painting-02.png";
+import SectionHeading from "../fragments/sectionHeading";
 
 const Hobby = () => {
   return (
-    <div className="section-shell h-full py-14 md:py-20 bg-transparent flex flex-col text-primaryFont">
-      <div className="font-tuskerBold text-7xl sm:text-9xl flex justify-center text-primaryFont m-5">artistry unveiled .</div>
+    <div className="section-shell section-block h-full bg-transparent flex flex-col text-primaryFont">
+      <SectionHeading>artistry unveiled</SectionHeading>
       {/* Intro Text */}
-      <div className="justify-start text-2xl 2xl:text-5xl font-abril">
+      <div className="font-sora text-2xl 2xl:text-5xl">
         I like art..
       </div>
 
       {/* Image Container */}
       <div className="w-full flex flex-col md:flex-row gap-8 mt-10 justify-center items-center md:items-end">
-        <img src={painting01} className="max-w-full md:w-auto max-h-[480px] rounded-2xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl" alt="Painting 01" />
-        <img src={painting02} className="max-w-full md:w-auto max-h-[384px] rounded-2xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl" alt="Painting 02" />
+        <img src={painting01} draggable="false" className="no-drag max-w-full md:w-auto max-h-[480px] rounded-lg transition-transform duration-300 md:hover:scale-105 hover:shadow-2xl" alt="Painting 01" />
+        <img src={painting02} draggable="false" className="no-drag max-w-full md:w-auto max-h-[384px] rounded-lg transition-transform duration-300 md:hover:scale-105 hover:shadow-2xl" alt="Painting 02" />
       </div>
 
       {/* Outro Text */}
-      <div className="justify-end text-right 2xl:text-5xl text-2xl font-abril mt-5">
+      <div className="font-sora text-right text-2xl 2xl:text-5xl mt-5">
         ...hence the theme
       </div>
     </div>

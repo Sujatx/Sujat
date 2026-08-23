@@ -9,10 +9,10 @@ const ProjectCard = ({ project }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        background: "#000",
-        border: "1px solid " + (hovered ? "rgba(245,238,230,0.32)" : "rgba(245,238,230,0.16)"),
-        borderRadius: "16px",
-        padding: "28px 26px 24px",
+        background: "var(--surface)",
+        border: "1px solid " + (hovered ? "var(--hairline-strong)" : "var(--hairline)"),
+        borderRadius: "var(--r-xl)",
+        padding: "var(--space-6) var(--space-5) var(--space-5)",
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
         transition: "border-color .2s ease, transform .2s ease",
       }}
@@ -20,11 +20,11 @@ const ProjectCard = ({ project }) => {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Header: folder glyph left, links right */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "26px" }}>
-        <span style={{ color: hovered ? "#FFD24A" : "rgba(245,238,230,0.55)", transition: "color .2s ease" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--space-5)" }}>
+        <span style={{ color: hovered ? "var(--accent)" : "rgba(245,238,230,0.55)", transition: "color .2s ease" }}>
           <FolderIcon />
         </span>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div style={{ display: "flex", gap: "var(--space-3)" }}>
           {project.github && (
             <IconButton href={project.github} size={34} label={project.titleLine1 + " " + project.titleLine2 + " on GitHub"}>
               <GithubIcon size={18} />
@@ -41,24 +41,24 @@ const ProjectCard = ({ project }) => {
       <h3
         className="font-anton"
         style={{
-          fontSize: "22px",
+          fontSize: "var(--t-h2)",
           lineHeight: "1.05",
           textTransform: "uppercase",
-          color: "#F5EEE6",
-          marginBottom: "12px",
+          color: "var(--ink)",
+          marginBottom: "var(--space-3)",
         }}
       >
         {project.titleLine1}{" "}
-        <span style={{ color: "#FFD24A" }}>{project.titleLine2}</span>
+        <span style={{ color: "var(--accent)" }}>{project.titleLine2}</span>
       </h3>
 
       <p
         className="font-sora"
         style={{
-          fontSize: "12.5px",
+          fontSize: "var(--t-small)",
           lineHeight: "1.6",
-          color: "#CFC9BD",
-          marginBottom: "18px",
+          color: "var(--ink-2)",
+          marginBottom: "var(--space-4)",
           display: "-webkit-box",
           WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical",
@@ -72,12 +72,12 @@ const ProjectCard = ({ project }) => {
         className="font-spaceMono"
         style={{
           marginTop: "auto",
-          paddingTop: "18px",
-          fontSize: "10.5px",
+          paddingTop: "var(--space-4)",
+          fontSize: "var(--t-label)",
           letterSpacing: "1px",
           lineHeight: "1.7",
           textTransform: "uppercase",
-          color: "#8F897C",
+          color: "var(--ink-3)",
           overflowWrap: "anywhere",
         }}
       >
